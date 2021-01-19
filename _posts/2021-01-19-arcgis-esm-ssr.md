@@ -32,7 +32,7 @@ As suggested in the error message, I started changing file extensions to cjs (Co
 
 NuxtJS has a built in method for transpiling dependencies, [documented here](https://nuxtjs.org/docs/2.x/configuration-glossary/configuration-build#transpile). Transpiling @arcgis/core will take several minutes on the first build, so have patience! You will also see a few errors (below) concerning file size.
 
-![Transpile error concerning file size in NuxtJS]((assets/arcgis-esm-ssr/transpile_error.jpg)
+![Transpile error concerning file size in NuxtJS](/assets/arcgis-esm-ssr/transpile_error.jpg)
 
 Once @arcgis/core is transpiled, you will be able to import the JSAPI ES modules. That should solve the issue if your application does not render a map. I included an example of a no-map solution using module transpilation in the [nuxt sample](https://github.com/benelan/arcgis-esm-samples/tree/main/jsapi-create-nuxt-app#non-map-workflows).
 
@@ -60,6 +60,6 @@ const EsriMapWithNoSSR = dynamic(() => import("../components/EsriMap"), {
 
 That's it. Now you can use the EsriMapWithNoSSR component and the map will render!
 
-![Map in NextJS](assets/arcgis-esm-ssr/next_map.jpg)
+![Map in NextJS](/assets/arcgis-esm-ssr/next_map.jpg)
 
 I found solutions for rendering a map in NuxtJS and Sapper as well, which are included in the [Github repo](https://github.com/benelan/arcgis-esm-samples). The samples contain additional framework specific documentation.
