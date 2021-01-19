@@ -1,4 +1,15 @@
-# Server Side Rendering Frameworks with @arcgis/core
+---
+title: "Server Side Rendering Frameworks with @arcgis/core"
+categories:
+  - ArcGIS
+  - JavaScript
+  - React
+tags:
+  - SSR
+  - NextJS
+  - NuxtJS
+  - ESM
+---
 
 I am elated by the beta release of the [@arcgis/core](https://www.npmjs.com/package/@arcgis/core) ECMAScript Modules (ESM). The release is a major victory in the [campaign to modernize](https://www.youtube.com/watch?v=woTI3jB5Z2Q&feature=youtu.be&t=182) the ArcGIS API for JavaScript (JSAPI). Needless to say, I spent hours pouring over the ESM samples provided via the [jsapi-resources](https://github.com/Esri/jsapi-resources/tree/master/esm-samples) Github repo. I then set out on the task of creating my own samples using Server Side Rendering (SSR) frameworks.
 
