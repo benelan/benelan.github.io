@@ -46,7 +46,59 @@
 
     h1 {
       color: white;
+      display: flex;
       font-size: 6.9em;
+    }
+
+    @keyframes bounce {
+      50% {
+        top: -5px;
+      }
+
+      100% {
+        top: 0;
+      }
+    }
+
+    span {
+      position: relative;
+      top: 0;
+    }
+
+    h1:hover span {
+      animation: bounce 0.3s ease alternate;
+    }
+
+    h1:hover span:nth-child(1) {
+      animation-delay: 0.1s;
+    }
+
+    h1:hover span:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    h1:hover span:nth-child(3) {
+      animation-delay: 0.3s;
+    }
+
+    h1:hover span:nth-child(4) {
+      animation-delay: 0.4s;
+    }
+
+    h1:hover span:nth-child(5) {
+      animation-delay: 0.5s;
+    }
+
+    h1:hover span:nth-child(6) {
+      animation-delay: 0.6s;
+    }
+
+    h1:hover span:nth-child(7) {
+      animation-delay: 0.7s;
+    }
+
+    h1:hover span:nth-child(8) {
+      animation-delay: 0.8s;
     }
 
     ul {
@@ -56,18 +108,27 @@
       align-items: center;
       justify-content: center;
       list-style: none;
-      gap: 4.2rem;
+      gap: 4.20rem;
     }
 
     li {
-      width: 4.2rem;
-      height: 4.2rem;
+      width: 4.20rem;
+      height: 4.20rem;
     }
   </style>
 
   <body>
     <main>
-      <h1>Ben Elan</h1>
+      <h1>
+        <span>B</span>
+        <span>e</span>
+        <span>n</span>
+        <span>&nbsp;</span>
+        <span>E</span>
+        <span>l</span>
+        <span>a</span>
+        <span>n</span>
+      </h1>
       <ul>
         <li>
           <a
