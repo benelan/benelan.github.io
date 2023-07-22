@@ -10,7 +10,7 @@ if has("syntax") && !exists("syntax_on")
 endif
 
 set number relativenumber linebreak backspace=indent,eol,start
-set clipboard^=unnamed autoread confirm hidden
+set clipboard=unnamed autoread confirm hidden
 set ignorecase smartcase autoindent smartindent formatoptions+=l
 set tabstop=4 softtabstop=-1 shiftwidth=0 shiftround smarttab expandtab
 set wildmenu wildmode=list:longest,full
@@ -208,8 +208,6 @@ nnoremap <Right> :vertical resize +5<CR>
 
 "" - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  }}}
 "" toggle options                                             {{{
-"" toggles automatic indentation based on the previous line
-nnoremap <leader>s<Tab> <CMD>set autoindent!<CR>
 "" toggles highlighted cursor row; doesn't work in visual mode
 nnoremap <leader>sx <CMD>set cursorline!<CR>
 "" toggles highlighted cursor column; works in visual mode
@@ -226,12 +224,8 @@ nnoremap <leader>sp <CMD>set paste!<CR>
 noremap <leader>sl <CMD>set list!<CR>
 "" toggles line number display
 noremap <leader>sn <CMD>set relativenumber!<CR>
-"" toggles position display in bottom right
-noremap <leader>sr <CMD>set ruler!<CR>
 "" toggles soft wrapping
 noremap <leader>sw <CMD>set wrap!<CR>
-"" toggle modifiable
-nnoremap <leader>sM <CMD>set modifiable!<CR>
 "" toggle colorcolumn
 nnoremap <silent> <leader>s\| <CMD>execute "set colorcolumn="
                   \ . (&colorcolumn == "" ? "80" : "")<CR>
@@ -399,18 +393,17 @@ function! ReplaceOperator(type) abort
   let @@ = save['unnamed']
   let &clipboard = save['clipboard']
   let &selection = save['selection']
-
 endfunction
 
 " Helper function for normal mode map
-function! operators#replace(register) abort
+function! s:operators_replace(register) abort
   let s:register = a:register
   set operatorfunc=ReplaceOperator
   return 'g@'
 endfunction
 
-nnoremap <expr> <leader>r operators#replace(v:register)
-xnoremap <expr> <leader<r operators#replace(v:register)
+nnoremap <expr> <leader>r <SID>operators_replace(v:register)
+xnoremap <expr> <leader>r <SID>operators_replace(v:register)
 
 " --------------------------------------------------------------------- }}}
 " Colon operator                                                        {{{
@@ -426,17 +419,18 @@ endfunction
 
 " Clear command so that we get prompted to input it, set operator function,
 " and return <expr> motions to run it
-function! operators#colon() abort
+function! s:operators_colon() abort
   unlet! s:command
   set operatorfunc=ColonOperator
   return 'g@'
 endfunction
 
-nnoremap <expr> g: operators#colon()
+nnoremap <expr> g: <SID>operators_colon()
 
 "----------------------------------------------------------------------}}}
 "  Terminal options                                                    {{{
 "----------------------------------------------------------------------{|}
+
 
 " Fix modern terminal features
 " :help terminal-output-codes
