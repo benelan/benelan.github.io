@@ -1,1 +1,22 @@
-{"name":"","short_name":"","icons":[{"src":"/android-chrome-192x192.png","sizes":"192x192","type":"image/png"},{"src":"/android-chrome-512x512.png","sizes":"512x512","type":"image/png"}],"theme_color":"#ffffff","background_color":"#ffffff","display":"standalone"}
+{
+  "name": "Ben Elan",
+  "short_name": "Ben Elan",
+  "description": "Ben Elan is a software engineer currently working on the Calcite Design System at Esri",
+  "display": "standalone",
+  "start_url": "/",
+  "prefer_related_applications": false,
+  "theme_color": "#83a598",
+  "background_color": "#1d2021",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
