@@ -1,4 +1,5 @@
 {
+  "manifest_version": 2,
   "name": "Ben Elan",
   "short_name": "Ben Elan",
   "description": "Ben Elan is a software engineer currently working on the Calcite Design System at Esri",
