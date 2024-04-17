@@ -5,12 +5,11 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta charset="utf-8" />
     <meta name="”robots”" content="index, follow" />
-    <meta name="theme-color" content="#83a598" />
-    <meta name="msapplication-TileColor" content="#83a598" />
-    <meta
-      name="msapplication-TileImage"
-      content="/android-chrome-192x192.png"
-    />
+
+    <meta name="theme-color" content="#d65d0e" />
+    <meta name="msapplication-TileColor" content="#d65d0e" />
+    <meta name="msapplication-TileImage" content="/android-chrome-192x192.png"/>
+
     <meta name="og:type" content="website" />
     <meta name="og:title" property="og:title" content="Ben Elan" />
     <meta
@@ -22,130 +21,133 @@
       name="description"
       content="Ben Elan is a Software Engineer currently working on the Calcite Design System at Esri"
     />
+
     <link rel="manifest" href="/manifest.json" />
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
     <!-- <link rel="preconnect" href="https://fonts.googleapis.com" /> -->
     <!-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /> -->
     <!-- <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet" /> -->
+
     <title>Ben Elan</title>
-  </head>
-  <style>
-    :root {
-      --ui-background: #1d2021;
-      --ui-foreground: #ebdbb2;
-      --ui-focus: #076678;
-      --ui-link: #83a598;
-      --ui-link-visited: #d3869b;
-      --ui-link-visited-focus: #8f3f71;
-    }
-
-    html,
-    body {
-      font-family: "Ubuntu Mono", monospace, monospace;
-      background: var(--ui-background);
-      color: var(--ui-foreground);
-      height: 100%;
-      margin: 0;
-      padding: 0;
-    }
-
-    main {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      height: 100%;
-    }
-
-    /* img { */
-    /*   display: flex; */
-    /*   width: 25%; */
-    /*   max-width: 300px; */
-    /*   min-width: 200px; */
-    /* } */
-
-    h1 {
-      display: flex;
-      font-size: 3.69em;
-      cursor: default;
-    }
-
-    span {
-      position: relative;
-      top: 0;
-    }
-
-    @keyframes let-me-see-you-make-it-bounce {
-      50% {
-        top: -1.337rem;
+    <style>
+      :root {
+        --ui-background: #1d2021;
+        --ui-foreground: #ebdbb2;
+        --ui-focus: #076678;
+        --ui-link: #83a598;
+        --ui-link-visited: #d3869b;
+        --ui-link-visited-focus: #8f3f71;
       }
 
-      100% {
+      html,
+      body {
+        font-family: "Ubuntu Mono", monospace, monospace;
+        background: var(--ui-background);
+        color: var(--ui-foreground);
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+      main {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        height: 100%;
+      }
+
+      /* img { */
+      /*   display: flex; */
+      /*   width: 25%; */
+      /*   max-width: 300px; */
+      /*   min-width: 200px; */
+      /* } */
+
+      h1 {
+        display: flex;
+        font-size: 3.69em;
+        cursor: default;
+      }
+
+      span {
+        position: relative;
         top: 0;
       }
-    }
 
-    h1:hover > span {
-      animation: let-me-see-you-make-it-bounce 0.69s ease-in-out
-        calc(var(--n) * 0.1s) alternate;
-    }
-
-    ul {
-      display: flex;
-      list-style: none;
-      gap: 4.20rem;
-      padding: 0;
-      margin: 0;
-    }
-
-    li {
-      width: 2.420rem;
-      height: 2.420rem;
-      transition: all 0.69s, transform 0.69s ease-out;
-    }
-
-    li:hover {
-      transform: scale(1.420);
-      transition: all 0.69s, transform 0.69s ease-out;
-    }
-
-    a,
-    svg {
-      outline: none;
-      cursor: pointer;
-    }
-
-    a {
-      fill: var(--ui-link);
-    }
-
-    a:visited {
-      fill: var(--ui-link-visited);
-    }
-
-    a:focus {
-      fill: var(--ui-focus);
-    }
-
-    a:focus:visited {
-      fill: var(--ui-link-visited-focus);
-    }
-
-    @media only screen and (min-width: 669.69px) and (min-height: 420.420px) {
-      h1 {
-        font-size: 6.9em;
+      @keyframes let-me-see-you-make-it-bounce {
+        50% {
+          top: -1.337rem;
+        }
+        100% {
+          top: 0;
+        }
       }
+
+      h1:hover > span {
+        animation: let-me-see-you-make-it-bounce 0.69s ease-in-out
+          calc(var(--n) * 0.1s) alternate;
+      }
+
+      ul {
+        display: flex;
+        list-style: none;
+        gap: 4.20rem;
+        padding: 0;
+        margin: 0;
+      }
+
       li {
-        width: 4.20rem;
-        height: 4.20rem;
+        width: 2.420rem;
+        height: 2.420rem;
+        transition: all 0.69s, transform 0.69s ease-out;
       }
-    }
-  </style>
+
+      li:hover {
+        transform: scale(1.420);
+        transition: all 0.69s, transform 0.69s ease-out;
+      }
+
+      a,
+      svg {
+        outline: none;
+        cursor: pointer;
+      }
+
+      a {
+        fill: var(--ui-link);
+      }
+
+      a:visited {
+        fill: var(--ui-link-visited);
+      }
+
+      a:focus {
+        fill: var(--ui-focus);
+      }
+
+      a:focus:visited {
+        fill: var(--ui-link-visited-focus);
+      }
+
+      @media only screen and (min-width: 669.69px) and (min-height: 420.420px) {
+        h1 {
+          font-size: 6.9em;
+        }
+        li {
+          width: 4.20rem;
+          height: 4.20rem;
+        }
+      }
+    </style>
+  </head>
+
   <body>
     <main>
       <!-- <img src="./headshot.png" alt="headshot" /> -->
@@ -159,6 +161,7 @@
         <span style="--n: 7">a</span>
         <span style="--n: 8">n</span>
       </h1>
+
       <ul>
         <li>
           <a
@@ -191,6 +194,7 @@
             </svg>
           </a>
         </li>
+
         <li>
           <a
             target="_blank"
@@ -210,6 +214,7 @@
             </svg>
           </a>
         </li>
+
         <li>
           <a
             target="_blank"
