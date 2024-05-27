@@ -1,25 +1,13 @@
 " Settings                                                              {{{
 " --------------------------------------------------------------------- {|}
 
-set nocompatible
+source $VIMRUNTIME/defaults.vim
 
-if has("autocmd")
-    filetype plugin indent on
-endif
-
-if has("syntax") && !exists("syntax_on")
-    syntax enable
-endif
-
-set autoread confirm hidden lazyredraw t_vb= ttimeout ttimeoutlen=100
-set smarttab expandtab shiftround softtabstop=4 shiftwidth=4
-set ignorecase smartcase autoindent smartindent formatoptions+=l
-set backspace=indent,eol,start clipboard=unnamed nrformats-=octal
-set number relativenumber foldmethod=indent foldlevel=99 display+=lastline
-set laststatus=2 showtabline=2 wildmenu wildmode=list:longest,full 
-set complete-=i completeopt=noselect,menuone,menuone
-set splitbelow splitright scrolloff=5 sidescrolloff=5 linebreak
-set path-=/usr/include path+=** define= include=
+set autoread confirm hidden lazyredraw ttyfast clipboard=unnamed t_vb= 
+set linebreak smarttab expandtab shiftround softtabstop=4 shiftwidth=4
+set ignorecase smartcase autoindent smartindent laststatus=2
+set number relativenumber splitbelow splitright foldmethod=indent foldlevel=99
+set complete-=i path-=/usr/include path+=** define= include=
 
 if has("persistent_undo")
     set undofile
@@ -45,37 +33,25 @@ endif
 
 if filereadable("/usr/share/dict/words")
     set dictionary=/usr/share/dict/words
-endif
-
-if has('reltime')
-  set incsearch
-endif
-
-if has("extra_search")
-    set hlsearch
-endif
-
-if has("multi_byte_encoding")
-    set listchars+=extends:»,precedes:«
-    set listchars+=multispace:·\ ,trail:·
-    " set listchars+=nbsp:␣,eol:⮠
-    let &showbreak= "…  "
-    set fillchars+=diff:╱
 else
-    set listchars+=extends:>,precedes:<
-    let &showbreak= "... "
+    set dictionary=spell
+endif
+
+if exists("+spelloptions")
+    set spelloptions+=camel
 endif
 
 if exists("+breakindent")
     set breakindent
 endif
 
+set wildmode=list:longest,full
 if exists("+wildignorecase")
     set wildignorecase
 endif
 
-if exists("+spelloptions")
-    set spelloptions+=camel
+if has("extra_search")
+    set hlsearch
 endif
 
 if has("cmdline_hist")
@@ -86,17 +62,26 @@ if has("virtualedit")
     set virtualedit+=block
 endif
 
+set formatoptions-=t
 if v:version > 703 || v:version == 703 && has("patch541")
     set formatoptions+=j
 endif
 
-if exists("+termguicolors")
-    set termguicolors
+set listchars=tab:\|->
+if has("multi_byte_encoding")
+    set listchars+=extends:»,precedes:«
+    set listchars+=multispace:·\ ,trail:·
+    set listchars+=nbsp:␣,eol:⤶
+    let &showbreak= "…  "
+    set fillchars+=diff:╱
+else
+    set listchars+=extends:>,precedes:<
+    let &showbreak= "... "
 endif
 
-set statusline=\ [%n]%m%r%h%w%q%y\ %f\ %=\ %c:[%l/%L]\ 
+set statusline=[%n]%m%r%h%w%q%y\ %f\ %=\ %v:[%l/%L]
 
-colorscheme desert
+" colorscheme desert
 hi! link TabLineFill Statusline
 
 "" markdown settings                                          {{{
@@ -131,6 +116,14 @@ if exists("*netrw_gitignore#Hide")
 endif
 
 "" - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  }}}
+"" misc settings                                              {{{
+
+let g:is_posix = 1
+let g:qf_disable_statusline = 1
+let g:ft_man_no_sect_fallback = 1
+let g:ft_man_folding_enable = 1
+
+"" - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  }}}
 
 " --------------------------------------------------------------------- }}}
 " Keymaps                                                               {{{
@@ -147,12 +140,12 @@ if has("keymap")
 
     " Format the entire buffer preserving cursor location.
     " Requires the 'B' text object defined below.
-    nmap Q mFgqBg`F
+    nmap Q mtgqBg`t:delmarks t<CR>
 
     " Format selected text maintaining the selection.
     xmap Q gq`[v`]
 
-    nnoremap <Backspace> <C-^>
+    nnoremap <BS> <C-^>
 
     nnoremap n nzzzv
     nnoremap N Nzzzv
@@ -185,20 +178,18 @@ if has("keymap")
     nnoremap ]<Space> <CMD>call append(line('.'), repeat([''], v:count1))<CR>
     nnoremap [<Space> <CMD>call append(line('.') - 1, repeat([''], v:count1))<CR>
 
-    " Search in the selection
-    xnoremap g/ <esc>/\\%V
-
-    " Re-select the previous selection
-    nnoremap <expr> <silent> gV "`[" . strpart(getregtype(), 0, 1) . "`]"
+    " Open netrw or go up in the directory tree if in netrw (vim-vinegar style)
+    nnoremap <silent> - <CMD>execute (
+        \ &filetype ==# "netrw"
+            \ ? "normal! -"
+            \ : ":Explore " . expand("%:h") . "<BAR>silent! echo search('" . expand("%:t") . "')"
+    \)<CR>
 
     " Change pwd to the buffer's directory
     nnoremap cd :<C-U>cd %:h <Bar> pwd<CR>
 
     cnoremap <expr> <C-n> wildmenumode() ? "\<C-n>" : "\<Down>"
     cnoremap <expr> <C-p> wildmenumode() ? "\<C-p>" : "\<Up>"
-
-    " expand the buffer's directory
-    cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<CR>
 
     " use last changed or yanked text as an object
     onoremap V :<C-U>execute "normal! `[v`]"<CR>
@@ -222,14 +213,17 @@ if has("keymap")
         execute 'onoremap a' . char . ' :normal va' . char . '<CR>'
     endfor
 
+    inoremap <C-U> <C-G>u<C-U>
+    inoremap <C-W> <C-G>u<C-W>
+
     " add closing brackets
     inoremap (<CR> (<CR>)<Esc>O
     inoremap {<CR> {<CR>}<Esc>O
-    inoremap {; {<CR>};<Esc>O
-    inoremap {, {<CR>},<Esc>O
+    inoremap {;<CR> {<CR>};<Esc>O
+    inoremap {,<CR> {<CR>},<Esc>O
     inoremap [<CR> [<CR>]<Esc>O
-    inoremap [; [<CR>];<Esc>O
-    inoremap [, [<CR>],<Esc>O
+    inoremap [;<CR> [<CR>];<Esc>O
+    inoremap [,<CR> [<CR>],<Esc>O
 
     " exit insert mode in terminal buffers
     tnoremap <Esc><Esc> <C-\><C-n>
@@ -237,19 +231,20 @@ if has("keymap")
     "" - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  }}}
     "" system clipboard                                           {{{
 
-    nnoremap <leader>y "+y
-    vnoremap <leader>y "+y
+    for char in [ 'y', 'p', 'P' ]
+        execute 'nnoremap <leader>' . char . ' "+' . char
+        execute 'vnoremap <leader>' . char . ' "+' . char
+    endfor
+
     nnoremap <leader>Y "+y$
-
-    vnoremap <leader>d "_d
-
-    nnoremap <leader>p "+p
-    vnoremap <leader>p "+p
-    vnoremap p "_dP
+    nnoremap gY <CMD>let @+=@*<CR>
 
     nnoremap x "_x
-
-    nnoremap gY <CMD>let @+=@*<CR>
+    nnoremap X "_X
+    nnoremap r "_r
+    nnoremap R "_R
+    nnoremap s "_s
+    nnoremap S "_S
 
     "" - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  }}}
     "" clear search highlights and reset syntax                   {{{
@@ -266,19 +261,22 @@ if has("keymap")
     "" - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  }}}
     "" git difftool/mergetool keymaps for selecting hunks         {{{
 
-    nnoremap <leader>gw :diffget<BAR>diffupdate<CR>
-    vnoremap <leader>gw :diffget<BAR>diffupdate<CR>
-    nnoremap <leader>gr :diffget<CR>
-    vnoremap <leader>gr :diffget<CR>
+    nnoremap <leader>gr :diffget<BAR>diffupdate<CR>
+    vnoremap <leader>gr :diffget<BAR>diffupdate<CR>
+    nnoremap <leader>gw :diffput<CR>
+    vnoremap <leader>gw :diffput<CR>
 
+    vnoremap <localleader>x :diffget BA<BAR>diffupdate<CR>
     nnoremap <localleader>x :diffget BA<BAR>diffupdate<CR>
     nnoremap <localleader>X :%diffget BA<BAR>diffupdate<CR>
 
     " LOCAL is the left buffer when using vimdiff
+    vnoremap [x :diffget LO<BAR>diffupdate<CR>
     nnoremap [x :diffget LO<BAR>diffupdate<CR>
     nnoremap [X :%diffget LO<BAR>diffupdate<CR>
 
     " REMOTE is the rightmost buffer
+    vnoremap ]x :diffget RE<BAR>diffupdate<CR>
     nnoremap ]x :diffget RE<BAR>diffupdate<CR>
     nnoremap ]X :%diffget RE<BAR>diffupdate<CR>
 
@@ -333,27 +331,11 @@ if has("keymap")
     "" pick buffer to jump to
     nnoremap <leader>bj :<C-U>buffers<CR>:buffer<Space>
 
-    "" delete/quit/save buffer
-    nnoremap <leader><Delete> :bdelete<CR>
-    nnoremap <leader>q :quit<CR>
-    nnoremap <leader>w :write<CR>
-
-    " Open a new tab of the current buffer and cursor position
-    nnoremap <silent> <leader>Z :exe 'tabnew +'. line('.') .' %'<CR>
-
     "" Managing tabs
     nnoremap <leader>tn :tabnew<CR>
     nnoremap <leader>to :tabonly<CR>
     nnoremap <leader>tc :tabclose<CR>
-
-    "" toggles between this and the last accessed tab
-    let s:last_tab = 1
-    nnoremap <leader>tl :exe "tabn ".g:lasttab<CR>
-    au TabLeave * let s:last_tab = tabpagenr()
-
-    " Create splits
-    nnoremap <leader>- :split<CR>
-    nnoremap <leader>\ :vsplit<CR>
+    nnoremap <leader>ts :tab split<CR>
 
     " Navigate splits
     nnoremap <C-h> <C-W>h
@@ -370,57 +352,22 @@ if has("keymap")
     "" - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  }}}
     "" toggle options                                             {{{
 
-    "" toggles highlighted cursor row; doesn't work in visual mode
+    nnoremap <leader>sl <CMD>set list!<CR><CMD>set list?<CR>
+    nnoremap <leader>sn <CMD>set relativenumber!<CR><CMD>set relativenumber?<CR>
+    nnoremap <leader>ss <CMD>set spell!<CR><CMD>set spell?<CR>
+    nnoremap <leader>sw <CMD>set wrap!<CR><CMD>set wrap?<CR>
     nnoremap <leader>sx <CMD>set cursorline!<CR><CMD>set cursorline?<CR>
 
-    "" toggles highlighted cursor column; works in visual mode
-    noremap <leader>sy <CMD>set cursorcolumn!<CR><CMD>set cursorcolumn?<CR>
-
-    "" toggles highlighting search results
-    nnoremap <leader>sh <CMD>set hlsearch!<CR><CMD>set hlsearch?<CR>
-
-    "" toggles showing matches as I enter my pattern
-    nnoremap <leader>si <CMD>set incsearch!<CR><CMD>set incsearch?<CR>
-
-    "" toggles spell checking
-    nnoremap <leader>ss <CMD>set spell!<CR><CMD>set spell?<CR>
-
-    "" toggles paste
-    nnoremap <leader>sp <CMD>set paste!<CR><CMD>set paste?<CR>
-
-    "" toggles showing tab, end-of-line, and trailing white space
-    nnoremap <leader>sl <CMD>set list!<CR><CMD>set list?<CR>
-
-    "" toggles line number display
-    nnoremap <leader>sn <CMD>set relativenumber!<CR><CMD>set relativenumber?<CR>
-
-    "" toggles ability to modify buffer
-    nnoremap <leader>sM <CMD>set modifiable!<CR><CMD>set modifiable?<CR>
-
-    "" toggles soft wrapping
-    nnoremap <leader>sw <CMD>set wrap!<CR><CMD>set wrap?<CR>
-
-    "" toggles conceal
-    nnoremap <leader>sC <CMD>execute "set conceallevel="
-                \ . (&conceallevel == "0" ? "2" : "0")<CR>
-                \ <CMD>set conceallevel?<CR>
-
-    "" toggle colorcolumn
     nnoremap <silent> <leader>s\| <CMD>execute "set colorcolumn="
-                    \ . (&colorcolumn == "" ? "80" : "")<CR>
-                    \ <CMD>set colorcolumn?<CR>
+            \ . (&colorcolumn == "" ? "79" : "")<CR>
 
-    "" toggle foldcolumn
-    nnoremap <silent> <leader>sf <CMD>execute "set foldcolumn="
-                    \ . (&foldcolumn == "0" ? "1" : "0")<CR>
-                    \ <CMD>set foldcolumn?<CR>
+    nnoremap <silent> <leader>sc <CMD>execute "set conceallevel="
+                \ . (&conceallevel == "0" ? "2" : "0")<CR>
 
-    "" toggle system clipboard
-    nnoremap <silent> <leader>sc <CMD>execute "set clipboard="
-                    \ . (&clipboard == "umnamed"
-                        \ ? "unnamed,unnamedplus"
-                        \ : "unnamed")<CR>
-                        \ <CMD>set clipboard?<CR>
+    nnoremap <silent> <leader>sY <CMD>execute "set clipboard="
+            \ . (&clipboard == "unnamed"
+                \ ? "unnamed,unnamedplus"
+                \ : "unnamed")<CR><CMD>set clipboard?<CR>
 
     "" - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  }}}
 endif
@@ -441,25 +388,18 @@ if has("eval")
     nnoremap <C-q> <CMD>QfToggle<CR>
 
     "" - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  }}}
-    "" toggle netrw open/close                                    {{{
-
-    function! s:NetrwToggle()
-        try | Rexplore
-        catch | Explore
-        endtry
-    endfunction
-
-    command! Netrw call <sid>NetrwToggle()
-    nnoremap <silent> <leader>e :Netrw<CR>
-
-    "" - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  }}}
     "" save the value of the last visual selection                {{{
 
     function! VisualSelection(...) range
         let l:saved_reg = @"
         execute "normal! vgvy"
 
-        let l:pattern = escape(@", " \\/.'`~!@#$%^&*+[]{}|")
+        if a:0 > 0 && a:1 == "pcre"
+            let l:pattern = escape(@", " \\/.-~!=?$^*+()[]{}|")
+        else
+            let l:pattern = escape(@", "\\/.*'$^~[]")
+        endif
+
         let l:pattern = substitute(l:pattern, "\n$", "", "")
 
         if a:0 > 0 && a:1 == "replace"
@@ -470,9 +410,13 @@ if has("eval")
         let @" = l:saved_reg
     endfunction
 
+    " neovim has this built in now
+    if !has("nvim")
+        xnoremap <silent> = :<C-u>call VisualSelection("replace")<CR>/<C-R>=@/<CR><CR>
+        xnoremap <silent> * :<C-u>call VisualSelection()<CR>/<C-R>=@/<CR><CR>
+    endif
+
     " Use the function to search/replace visually selected text
-    xnoremap <silent> = :<C-u>call VisualSelection("replace")<CR>/<C-R>=@/<CR><CR>
-    xnoremap <silent> * :<C-u>call VisualSelection()<CR>/<C-R>=@/<CR><CR>
     xnoremap <silent> # :<C-u>call VisualSelection()<CR>?<C-R>=@/<CR><CR>
 
     "" - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  }}}
@@ -492,7 +436,8 @@ if has("eval")
     command! -bang -complete=buffer -nargs=? Bwipeout
         \ :call s:BgoneHeathen("bwipeout", <q-bang>)
 
-    nnoremap <silent> <leader><Delete> :Bdelete<CR>
+    nnoremap <silent> <leader><BS> :Bdelete<CR>
+    nnoremap <silent> <leader><Delete> :bdelete<CR>
 
     "" - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  }}}
     "" go to next/previous merge conflict hunks                   {{{
@@ -506,8 +451,90 @@ if has("eval")
     nnoremap <silent> ]C :<C-U>call <SID>findConflict(0)<CR>
 
     "" - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  }}}
+    "" diff and stage hunks                                       {{{
 
-endif
+    "" from https://github.com/whiteinge/dotfiles/blob/master/.vim/autoload/stagediff.vim
+    function! s:WriteToIndex(fname)
+        try
+            let l:mode = split(system('git ls-files --stage '. a:fname), ' ')[0]
+        catch
+            let l:mode = '100644'
+        endtry
+
+        let l:ret = execute('write !git hash-object --stdin -w
+            \ | xargs -I@ git update-index --add
+            \ --cacheinfo '. l:mode .',@,'. a:fname)
+        set nomodified
+    endfu
+
+    function! s:StageDiff()
+        let s:fname = fnamemodify(expand('%'), ':~:.')
+        let l:ft = &ft
+
+        if (len(system('git ls-files --unmerged ./'. s:fname)))
+            echohl WarningMsg
+                \ | echon "Please resolve conflicts first."
+                \ | echohl None
+            return 1
+        endif
+
+        tabe %
+        diffthis
+        vnew
+
+        call system('git ls-files --error-unmatch ./'. s:fname)
+        if (!v:shell_error)
+            silent exe ':r !git show :./'. s:fname
+            1delete
+        endif
+
+        set nomodified
+        let &ft = l:ft
+        diffthis
+
+        setl buftype=acwrite bufhidden=delete nobuflisted
+        au BufWriteCmd <buffer> call <SID>WriteToIndex(s:fname)
+        exe 'file _staging_'. s:fname
+
+        redraw
+        echohl WarningMsg
+            \ | echon "Move changes leftward then write file to stage."
+            \ | echohl None
+    endfu
+
+    command! Gdiff call s:StageDiff()
+
+    nnoremap <silent> <leader>gd :Gdiff<CR>
+
+    "" - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  }}}
+    "" Show Git blame window                                      {{{
+
+    command! Gblame :exe 'tabnew +'. line('.') .' %'
+        \| :53vnew
+        \| :setl buftype=nofile bufhidden=wipe nobuflisted
+        \| :exe 'r !git blame -f --date=relative -- '. expand('#:p:~:.')
+        \   ." | awk '{ print $1, substr($0, index($0, \"(\") + 1) }'"
+        \| 1delete
+        \| :exe line('.', win_getid(winnr('#')))
+        \| :windo setl nofoldenable nowrap
+        \| :windo setl scrollbind
+
+    nnoremap <silent> <leader>gb :Gblame<CR>
+
+    "" - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  }}}
+    "" Show full commit for current line                          {{{
+
+    command! Gannotateline :call
+        \ printf("!git blame -l -L %s,+1 -- %s \| awk '{ print $1 }' \|
+        \ xargs git show --summary --stat --pretty=fuller --patch",
+        \     getpos('.')[1],
+        \     expand('%:p'))
+        \ ->execute("")
+    endif
+
+    nnoremap <silent> <leader>gl :Gannotateline<CR>
+
+    "" - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  }}}
 
 " --------------------------------------------------------------------- }}}
 " Autocommands                                                          {{{
@@ -520,46 +547,38 @@ if has("autocmd")
         " equalize window sizes when vim is resized
         autocmd VimResized * wincmd =
 
-        " When editing a file, always jump to the last known cursor position.
-        " Don't do it when the position is invalid, when inside an event handler
-        " (happens when dropping a file on gvim) and for a commit message (it's
-        " likely a different one than last time).
-        autocmd BufReadPost *
-            \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
-            \ |   exe "normal! g`\""
-            \ | endif
-
         autocmd FileType * setlocal formatoptions-=o
 
-        autocmd FileType qf,help,man
+        autocmd FileType qf,help,man,netrw
                     \ set nobuflisted
-                    \| nnoremap <silent> <buffer> q :q<CR>
+                    \ | nnoremap <silent> <buffer> q :q<CR>
+                    \ | nnoremap <silent> <buffer> gq :bd!<CR>
 
-        if exists("+omnifunc")
-            autocmd Filetype *
-              \ if &omnifunc == "" |
-              \     setlocal omnifunc=syntaxcomplete#Complete |
-              \ endif
-        endif
+        " Clear jumplist on startup
+        autocmd VimEnter * clearjumps
 
         " Clear actively used file marks to prevent jumping to other projects
-        autocmd VimEnter *  delmarks QWEASD
+        autocmd VimEnter *  delmarks REQAZ
+
+        " Set up keywordprg to open devdocs
+        autocmd FileType {java,type}script{,react},vue,svelte,astro
+            \ setl keywordprg=sh\ -c\ '$BROWSER\ https://devdocs.io/\\#q=\$1\ '\ --
 
         " Set up formatters
         if executable("npx")
             autocmd FileType json,yaml,markdown,mdx,css,scss,html,
                 \astro,svelte,vue,{java,type}script{,react}
-                \ setlocal formatprg=npx\ prettier\ --stdin-filepath\ %\ 2>/dev/null
+                \ setlocal formatprg=npx\ prettier\ --stdin-filepath=%\ 2>/dev/null
         endif
 
         if executable("shfmt")
             autocmd FileType {,ba,da,k,z}sh
-                \ setlocal formatprg=shfmt\ -i\ 4\ -ci\ --filename\ %\ 2>/dev/null
+                \ setlocal formatprg=shfmt\ -i=4\ -ci\ --filename=%\ 2>/dev/null
         endif
 
         if executable("stylua")
             autocmd FileType lua
-                \ setlocal formatprg=stylua\ --color\ Never\ --stdin-filepath\ %\ -\ 2>/dev/null
+                \ setlocal formatprg=stylua\ --color=Never\ --stdin-filepath=%\ -\ 2>/dev/null
         endif
     augroup END
 endif
@@ -711,60 +730,8 @@ if has("eval")
 
     nnoremap <expr> g: <SID>operators_colon()
     "" - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  }}}
-endif
 
-"-----------------------------------------------------------------------}}}
-" Terminal options                                                      {{{
-"-----------------------------------------------------------------------{|}
-
-" Fix modern terminal features
-" :help terminal-output-codes
-if !has('gui_running') && &term =~ '^\%(screen\|tmux\|xterm\|gnome\)'
-    " Styled and colored underline support
-    let &t_AU = "\e[58:5:%dm"
-    let &t_8u = "\e[58:2:%lu:%lu:%lum"
-    let &t_Us = "\e[4:2m"
-    let &t_Cs = "\e[4:3m"
-    let &t_ds = "\e[4:4m"
-    let &t_Ds = "\e[4:5m"
-    let &t_Ce = "\e[4:0m"
-
-    " Enable true colors, see  :help xterm-true-color
-    let &t_8f = "\e[38:2:%lu:%lu:%lum"
-    let &t_8b = "\e[48:2:%lu:%lu:%lum"
-    let &t_RF = "\e]10;?\e\\"
-    let &t_RB = "\e]11;?\e\\"
-
-    " Enable bracketed paste mode, see  :help xterm-bracketed-paste
-    let &t_BE = "\e[?2004h"
-    let &t_BD = "\e[?2004l"
-    let &t_PS = "\e[200~"
-    let &t_PE = "\e[201~"
-
-    " Cursor control
-    if exists("+cursorshape")
-        let &t_RS = "\eP$q q\e\\"
-        let &t_RC = "\e[?12$p"
-        let &t_VS = "\e[?12l"
-        let &t_SH = "\e[%d q"
-        let &t_SI = "\e[6 q"
-        let &t_SR = "\e[4 q"
-        let &t_EI = "\e[2 q"
-    endif
-
-    " Enable focus event tracking, see  :help xterm-focus-event
-    let &t_fe = "\e[?1004h"
-    let &t_fd = "\e[?1004l"
-    execute "set <FocusGained>=\e[I"
-    execute "set <FocusLost>=\e[O"
-
-    " Enable modified arrow keys, see  :help arrow_modifiers
-    execute "silent! set <xUp>=\e[@;*A"
-    execute "silent! set <xDown>=\e[@;*B"
-    execute "silent! set <xRight>=\e[@;*C"
-    execute "silent! set <xLeft>=\e[@;*D"
-
-    let &t_ut=""
+    " TODO: make a surround operator via: c<motion>"<C-r><C-o>""<Esc>
 endif
 
 "----------------------------------------------------------------------}}}
