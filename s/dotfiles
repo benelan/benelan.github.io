@@ -34,6 +34,8 @@ git clone --bare "$repo_url" "$HOME/.git"
 
 dot() { /usr/bin/git --git-dir="$HOME"/.git/ --work-tree="$HOME" "$@"; }
 
+dot fetch --all
+
 # Make sure fetching works correctly for all branches
 dot config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
 
