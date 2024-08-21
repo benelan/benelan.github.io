@@ -34,8 +34,6 @@ git clone --bare "$repo_url" "$HOME/.git"
 
 dot() { /usr/bin/git --git-dir="$HOME"/.git/ --work-tree="$HOME" "$@"; }
 
-dot fetch --all
-
 # Make sure fetching works correctly for all branches
 dot config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
 
@@ -43,8 +41,6 @@ dot config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
 # Dotfiles need to be manually added for them to show up, e.g.
 # $ dot add ~/.npmrc
 dot config status.showUntrackedFiles no
-
-dot branch --set-upstream-to=origin/master master
 
 if dot checkout >/dev/null 2>&1; then
     printf "\nChecked out dotfiles\n" >&2
