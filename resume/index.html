@@ -1,187 +1,567 @@
-<!DOCTYPE html>
+<!doctype html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="generator" content="pandoc" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Resume – Ben Elan</title>
-  <style>
-    code{white-space: pre-wrap;}
-    span.smallcaps{font-variant: small-caps;}
-    span.underline{text-decoration: underline;}
-    div.column{display: inline-block; vertical-align: top; width: 50%;}
-    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    ul.task-list{list-style: none;}
-  </style>
-  <style type="text/css">
-html { font-size: 16px; font-family: sans; }
-:root { --print-fonts: Noto Serif, Times New Roman, serif; }
-@media print { html { font-family: var(--print-fonts); line-height: 1.4; } body { font-size: 11pt; } }
+  <head>
+    <meta charset="utf-8" />
+    <meta name="generator" content="pandoc" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=yes"
+    />
+    <meta name="theme-color" content="#d65d0e" />
+    <meta name="msapplication-TileColor" content="#d65d0e" />
+    <meta
+      name="msapplication-TileImage"
+      content="/img/android-chrome-192x192.png"
+    />
 
+    <meta name="og:type" content="website" />
+    <meta name="og:title" property="og:title" content="Resume - Ben Elan" />
+    <meta
+      name="og:description"
+      property="og:description"
+      content="Resume - Ben Elan is a Software Engineer currently working on the Calcite Design System at Esri"
+    />
+    <meta
+      name="description"
+      content="Resume - Ben Elan is a Software Engineer currently working on the Calcite Design System at Esri"
+    />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="icon" href="/img/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/img/favicon-16x16.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/img/favicon-32x32.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/img/apple-touch-icon.png"
+    />
+    <title>Resume – Ben Elan</title>
+    <style>
+      code {
+        white-space: pre-wrap;
+      }
+      span.smallcaps {
+        font-variant: small-caps;
+      }
+      span.underline {
+        text-decoration: underline;
+      }
+      div.column {
+        display: inline-block;
+        vertical-align: top;
+        width: 50%;
+      }
+      div.hanging-indent {
+        margin-left: 1.5em;
+        text-indent: -1.5em;
+      }
+      ul.task-list {
+        list-style: none;
+      }
+    </style>
+    <style type="text/css">
+      html {
+        font-size: 16px;
+        font-family: sans;
+      }
+      :root {
+        --print-fonts: Noto Serif, Times New Roman, serif;
+      }
+      @media print {
+        html {
+          font-family: var(--print-fonts);
+          line-height: 1.4;
+        }
+        body {
+          font-size: 11pt;
+        }
+      }
 
-:root {
---header-color: #0074a3;
---link-underline-color: #aaa;
-}
+      :root {
+        --header-color: #0074a3;
+        --link-underline-color: #aaa;
+      }
 
-body { max-width: 55em; }
+      body {
+        max-width: 55em;
+      }
 
-@media screen and (min-width: 1200px) {
-html { background-color: #eee; }
-body { margin: 30px auto; padding: 30px; background-color: #fdfdfd; border: 1px solid #ccc; box-shadow: 2px 2px 4px #aaa; }
-}
+      @media screen and (min-width: 1200px) {
+        html {
+          background-color: #eee;
+        }
+        body {
+          margin: 30px auto;
+          padding: 30px;
+          background-color: #fdfdfd;
+          border: 1px solid #ccc;
+          box-shadow: 2px 2px 4px #aaa;
+        }
+      }
 
-@media print { @page { size: A4; margin: 1cm; @bottom-center { content: counter(page); } } }
+      @media print {
+        @page {
+          size: A4;
+          margin: 1cm;
+          @bottom-center {
+            content: counter(page);
+          }
+        }
+      }
 
-header { margin-bottom: 2em; }
-header img { vertical-align: middle; }
-@media print, (min-width: 900px) {
-header { display: flex; justify-content: space-evenly; align-items: flex-end; }
-header .title { flex: 2; }
-header .subtitle { flex: 3; }
-}
+      header {
+        margin-bottom: 2em;
+      }
+      header img {
+        vertical-align: middle;
+      }
+      @media print, (min-width: 900px) {
+        header {
+          display: flex;
+          justify-content: space-evenly;
+          align-items: flex-end;
+        }
+        header .title {
+          flex: 2;
+        }
+        header .subtitle {
+          flex: 3;
+        }
+      }
 
-header a, footer a, a.ul { text-decoration: underline var(--link-underline-color); }
-header a:hover, footer a:hover, a.ul:hover { text-decoration: none; }
-a { text-decoration: none; color: unset; }
-a:hover { text-decoration: underline var(--link-underline-color); }
+      header a,
+      footer a,
+      a.ul {
+        text-decoration: underline var(--link-underline-color);
+      }
+      header a:hover,
+      footer a:hover,
+      a.ul:hover {
+        text-decoration: none;
+      }
+      a {
+        text-decoration: none;
+        color: unset;
+      }
+      a:hover {
+        text-decoration: underline var(--link-underline-color);
+      }
 
-h1 { color: var(--header-color); }
-h3 { display: flex; align-items: center; color: var(--header-color); }
-h3::after { content: ""; flex: 1; margin-left: 1em; border-bottom: 2px solid var(--header-color); }
+      h1 {
+        color: var(--header-color);
+      }
+      h3 {
+        display: flex;
+        align-items: center;
+        color: var(--header-color);
+      }
+      h3::after {
+        content: "";
+        flex: 1;
+        margin-left: 1em;
+        border-bottom: 2px solid var(--header-color);
+      }
 
-:root { --bullet-spacing: 0.2em; }
-div > p:first-child { margin-bottom: var(--bullet-spacing); }
-div > p + ul { margin-top: var(--bullet-spacing); }
-div > p + ul li p { margin-bottom: var(--bullet-spacing); margin-top: var(--bullet-spacing); }
+      :root {
+        --bullet-spacing: 0.2em;
+      }
+      div > p:first-child {
+        margin-bottom: var(--bullet-spacing);
+      }
+      div > p + ul {
+        margin-top: var(--bullet-spacing);
+      }
+      div > p + ul li p {
+        margin-bottom: var(--bullet-spacing);
+        margin-top: var(--bullet-spacing);
+      }
 
-div.entry > p:first-child *:nth-child(1) { grid-area: position; }
-div.entry > p:first-child *:nth-child(2) { grid-area: location; }
-div.entry > p:first-child *:nth-child(3) { grid-area: years; }
-div.entry > p:first-child { display: grid; column-gap: 1em; }
-@media screen and (max-width: 699px) { div.entry > p:first-child { grid: "position years" "location location" / 1fr max-content; } }
-@media print, (min-width: 700px) { div.entry > p:first-child { grid: "position location years" / max(25ch, 37%) 1fr max-content; } }
+      div.entry > p:first-child *:nth-child(1) {
+        grid-area: position;
+      }
+      div.entry > p:first-child *:nth-child(2) {
+        grid-area: location;
+      }
+      div.entry > p:first-child *:nth-child(3) {
+        grid-area: years;
+      }
+      div.entry > p:first-child {
+        display: grid;
+        column-gap: 1em;
+      }
+      @media screen and (max-width: 699px) {
+        div.entry > p:first-child {
+          grid: "position years" "location location" / 1fr max-content;
+        }
+      }
+      @media print, (min-width: 700px) {
+        div.entry > p:first-child {
+          grid: "position location years" / max(25ch, 37%) 1fr max-content;
+        }
+      }
 
-dt { font-weight: bold; }
-@media screen and (max-width: 499px) { dd { margin-left: 1.7em; } }
-@media print, (min-width: 500px) {
-dl { display: grid; grid-template-columns: max-content auto; }
-dt { grid-column: 1; margin-right: 1em; }
-dd { grid-column: 2; margin-left: 0; margin-bottom: var(--bullet-spacing); }
-}
+      dt {
+        font-weight: bold;
+      }
+      @media screen and (max-width: 499px) {
+        dd {
+          margin-left: 1.7em;
+        }
+      }
+      @media print, (min-width: 500px) {
+        dl {
+          display: grid;
+          grid-template-columns: max-content auto;
+        }
+        dt {
+          grid-column: 1;
+          margin-right: 1em;
+        }
+        dd {
+          grid-column: 2;
+          margin-left: 0;
+          margin-bottom: var(--bullet-spacing);
+        }
+      }
 
-.page-break { break-before: page; }
-div { break-inside: avoid; }
+      .page-break {
+        break-before: page;
+      }
+      div {
+        break-inside: avoid;
+      }
 
-:root:not(.has-paged-js) footer { margin-left: auto; margin-right: auto; width: max-content; }
-:root:not(.has-paged-js) footer p { border-top: 2px solid var(--header-color); margin-top: 3em; }
-@media print {
-:root.has-paged-js footer { position: absolute; bottom: -1cm; right: 0; }
-:root.has-paged-js footer p { height: 1cm; margin: 0; display: table-cell; vertical-align: middle; }
-}
-
-
-
-</style>
-</head>
-<body>
-<header id="title-block-header">
-<h1 class="title">Ben Elan</h1>
-<p class="subtitle"><a href="mailto:hire@benelan.dev">hire@benelan.dev</a> | <a href="https://github.com/benelan"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgZmlsbD0iY3VycmVudENvbG9yIiBjbGFzcz0iYmkgYmktZ2l0aHViIiB2aWV3Qm94PSIwIDAgMTYgMTYiPgogIDxwYXRoIGQ9Ik04IDBDMy41OCAwIDAgMy41OCAwIDhjMCAzLjU0IDIuMjkgNi41MyA1LjQ3IDcuNTkuNC4wNy41NS0uMTcuNTUtLjM4IDAtLjE5LS4wMS0uODItLjAxLTEuNDktMi4wMS4zNy0yLjUzLS40OS0yLjY5LS45NC0uMDktLjIzLS40OC0uOTQtLjgyLTEuMTMtLjI4LS4xNS0uNjgtLjUyLS4wMS0uNTMuNjMtLjAxIDEuMDguNTggMS4yMy44Mi43MiAxLjIxIDEuODcuODcgMi4zMy42Ni4wNy0uNTIuMjgtLjg3LjUxLTEuMDctMS43OC0uMi0zLjY0LS44OS0zLjY0LTMuOTUgMC0uODcuMzEtMS41OS44Mi0yLjE1LS4wOC0uMi0uMzYtMS4wMi4wOC0yLjEyIDAgMCAuNjctLjIxIDIuMi44Mi42NC0uMTggMS4zMi0uMjcgMi0uMjcuNjggMCAxLjM2LjA5IDIgLjI3IDEuNTMtMS4wNCAyLjItLjgyIDIuMi0uODIuNDQgMS4xLjE2IDEuOTIuMDggMi4xMi41MS41Ni44MiAxLjI3LjgyIDIuMTUgMCAzLjA3LTEuODcgMy43NS0zLjY1IDMuOTUuMjkuMjUuNTQuNzMuNTQgMS40OCAwIDEuMDctLjAxIDEuOTMtLjAxIDIuMiAwIC4yMS4xNS40Ni41NS4zOEE4LjAxMiA4LjAxMiAwIDAgMCAxNiA4YzAtNC40Mi0zLjU4LTgtOC04eiIvPgo8L3N2Zz4=" style="width:1em" alt="github" /> benelan</a> | <a href="https://www.linkedin.com/in/benelan"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgZmlsbD0iY3VycmVudENvbG9yIiBjbGFzcz0iYmkgYmktbGlua2VkaW4iIHZpZXdCb3g9IjAgMCAxNiAxNiI+CiAgPHBhdGggZD0iTTAgMS4xNDZDMCAuNTEzLjUyNiAwIDEuMTc1IDBoMTMuNjVDMTUuNDc0IDAgMTYgLjUxMyAxNiAxLjE0NnYxMy43MDhjMCAuNjMzLS41MjYgMS4xNDYtMS4xNzUgMS4xNDZIMS4xNzVDLjUyNiAxNiAwIDE1LjQ4NyAwIDE0Ljg1NFYxLjE0NnptNC45NDMgMTIuMjQ4VjYuMTY5SDIuNTQydjcuMjI1aDIuNDAxem0tMS4yLTguMjEyYy44MzcgMCAxLjM1OC0uNTU0IDEuMzU4LTEuMjQ4LS4wMTUtLjcwOS0uNTItMS4yNDgtMS4zNDItMS4yNDgtLjgyMiAwLTEuMzU5LjU0LTEuMzU5IDEuMjQ4IDAgLjY5NC41MjEgMS4yNDggMS4zMjcgMS4yNDhoLjAxNnptNC45MDggOC4yMTJWOS4zNTljMC0uMjE2LjAxNi0uNDMyLjA4LS41ODYuMTczLS40MzEuNTY4LS44NzggMS4yMzItLjg3OC44NjkgMCAxLjIxNi42NjIgMS4yMTYgMS42MzR2My44NjVoMi40MDFWOS4yNWMwLTIuMjItMS4xODQtMy4yNTItMi43NjQtMy4yNTItMS4yNzQgMC0xLjg0NS43LTIuMTY1IDEuMTkzdi4wMjVoLS4wMTZhNS41NCA1LjU0IDAgMCAxIC4wMTYtLjAyNVY2LjE2OWgtMi40Yy4wMy42NzggMCA3LjIyNSAwIDcuMjI1aDIuNHoiLz4KPC9zdmc+" style="width:1em" alt="linkedin" /> benelan</a> </p>
-</header>
-<h3 id="skills">SKILLS</h3>
-<dl>
-<dt>Languages</dt>
-<dd>Bash, CSS, HTML, JavaScript/TypeScript, Lua, Python, SQL
-</dd>
-<dt>Libraries</dt>
-<dd>Express, Jest, Lerna NextJS, React, StencilJS, Storybook, Svelte, Tailwind, Vue
-</dd>
-<dt>Technologies</dt>
-<dd>ArcGIS, Docker, Git, GitHub Actions, Linux, Monorepos, NodeJS, SSR/SSG, Vim
-</dd>
-</dl>
-<h3 id="experience">EXPERIENCE</h3>
-<div class="entry">
-<p><strong>Software Engineer</strong> <span><a href="https://developers.arcgis.com/calcite-design-system/"><strong>Calcite Design System, Esri</strong></a> (Remote)</span> <strong>2022–current</strong></p>
-<ul>
-<li><p>Consolidated code from multiple design system packages into a monorepo.</p></li>
-<li><p>Implemented automated package versioning, releasing, and changelog generation.</p></li>
-<li><p>Fixed bugs and developed new features using native browser APIs, including form validation, focus behavior, internationalization, and more.</p></li>
-<li><p>Mentored newly hired Software Engineer.</p></li>
-<li><p><em>Tech:</em> StencilJS, Node, GitHub Actions, Storybook, Jest, Turborepo, Lerna, Frontend frameworks</p></li>
-</ul>
-</div>
-<div class="entry">
-<p><strong>Product Engineer</strong> <span><a href="https://developers.arcgis.com/calcite-design-system/"><strong>Calcite Design System, Esri</strong></a> (Remote)</span> <strong>2021–2022</strong></p>
-<ul>
-<li><p>Created and maintained continuous integration and automation workflows to increase the team’s efficiency, including a script published to NPM for <a href="https://www.npmjs.com/package/build-sizes">tracking build sizes</a>, and two <a href="https://github.com/marketplace/actions/need-more-info">GitHub</a> <a href="https://github.com/marketplace/actions/add-milestone-by-due-date">Actions</a> published to Marketplace.</p></li>
-<li><p>Developed new features and fixed bugs for Calcite components (web components).</p></li>
-<li><p>Assisted with sprint planning, issue prioritization, and quality assurance testing.</p></li>
-<li><p>Solved technical questions from internal Esri employees and external users.</p></li>
-<li><p>Wrote internal and external documentation, including coding conventions, API reference, development tutorials, framework starter apps, and concept explanations.</p></li>
-</ul>
-</div>
-<div class="entry">
-<p><strong>Developer Products Specialist</strong> <span><strong>Support Services, Esri</strong> (Redlands, CA)</span> <strong>2019–2021</strong></p>
-<ul>
-<li><p>Subject Matter Expert in ArcGIS API for JavaScript, Web AppBuilder &amp; Experience Builder.</p></li>
-<li><p>Created multiple internal Esri applications:</p>
-<ul>
-<li>Carpool app to match employees based on commute time and location.</li>
-<li>Product support-ability search app for case routing.</li>
-<li>Hardware/device management web app with server side authentication.</li>
-<li>Web forms for streamlining exam and training requests.</li>
-</ul></li>
-<li><p>Participated in Hack the Map 4 on <a href="https://devpost.com/software/team-medalus">Team Medalus</a>. Won First Place in Enterprise.</p></li>
-<li><p>Virtual speaker at Esri User Conference 2020: <a href="https://lms-content.s3.amazonaws.com/Readiness/UC_Prep/2020_Presentations/11044_DebuggingArcGISAPIforJavascript_Elan.mp4">Troubleshooting ArcGIS API for JavaScript Queries</a></p></li>
-<li><p>Wrote two ArcGIS blog posts:</p>
-<ul>
-<li><a href="https://www.esri.com/arcgis-blog/products/js-api-arcgis/mapping/using-html-with-popups-in-the-arcgis-api-for-javascript/">Using HTML with Popups in the ArcGIS API for JavaScript</a></li>
-<li><a href="https://www.esri.com/arcgis-blog/products/js-api-arcgis/developers/ssr-esm/">Server Side Rendering Frameworks with <code>@arcgis/core</code></a></li>
-</ul></li>
-<li><p><em>Tech:</em> NextJS, Jest, ArcGIS, SQLite, Lunr, MERN stack (MongoDB, Express, React, Node)</p></li>
-</ul>
-</div>
-<div class="entry">
-<p><strong>Web/GIS Developer</strong> <span><strong>InfoGraphics Lab</strong> (University of Oregon)</span> <strong>2017–2019</strong></p>
-<ul>
-<li><p>Implemented interactive web mapping applications.</p></li>
-<li><p>Teaching Assistant for Web Mapping (GEOG 490/590) course.</p></li>
-<li><p>Presented at NACIS about building interactivity for a <a href="https://pages.uoregon.edu/infographics/dev/timelineV2/pages/chartofHistory.html">digitized, historic timeline</a>.</p></li>
-<li><p><em>Tech:</em> D3, Leaflet, High Charts, JQuery</p></li>
-</ul>
-</div>
-<h3 id="education">EDUCATION</h3>
-<div class="entry">
-<p><strong>Bachelors of Science</strong> <span><strong>University of Oregon</strong> (Eugene, OR)</span> <strong>2014–2018</strong></p>
-<ul>
-<li>Majored in <em>Spatial Data Science and Technology</em> with a minor in <em>Computer Science</em>.</li>
-</ul>
-</div>
-<div class="entry">
-<p><strong>Wilderness EMT</strong> <span><strong>National Outdoor Leadership School</strong> (Lander, WY)</span> <strong>2016</strong></p>
-<ul>
-<li><p>Developed leadership skills during a variety of outdoor expeditions.</p></li>
-<li><p>Earned five medical/rescue certifications.</p></li>
-</ul>
-</div>
-<div class="entry">
-<p><strong>National Security</strong> <span><strong>National Youth Leadership Forum</strong> (Washington, D.C.)</span> <strong>2014</strong></p>
-<ul>
-<li>Nominated for a delegation of high school students to learn from national security experts.</li>
-</ul>
-</div>
-<div class="entry">
-<p><strong>Information Security</strong> <span><strong>University of Southern California</strong> (Los Angeles, CA)</span> <strong>2013</strong></p>
-<ul>
-<li>Earned 3 college credits for an intensive summer course on information/cyber security.</li>
-</ul>
-</div>
-<footer>
-<p>
-<a href="https://benelan.dev/resume/Ben_Elan_Resume.pdf">PDF version</a>
-</p>
-</footer>
-</body>
+      :root:not(.has-paged-js) footer {
+        margin-left: auto;
+        margin-right: auto;
+        width: max-content;
+      }
+      :root:not(.has-paged-js) footer p {
+        border-top: 2px solid var(--header-color);
+        margin-top: 3em;
+      }
+      @media print {
+        :root.has-paged-js footer {
+          position: absolute;
+          bottom: -1cm;
+          right: 0;
+        }
+        :root.has-paged-js footer p {
+          height: 1cm;
+          margin: 0;
+          display: table-cell;
+          vertical-align: middle;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header id="title-block-header">
+      <h1 class="title">Ben Elan</h1>
+      <p class="subtitle">
+        <a href="mailto:hire@benelan.dev">hire@benelan.dev</a> |
+        <a href="https://github.com/benelan"
+          ><img
+            src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgZmlsbD0iY3VycmVudENvbG9yIiBjbGFzcz0iYmkgYmktZ2l0aHViIiB2aWV3Qm94PSIwIDAgMTYgMTYiPgogIDxwYXRoIGQ9Ik04IDBDMy41OCAwIDAgMy41OCAwIDhjMCAzLjU0IDIuMjkgNi41MyA1LjQ3IDcuNTkuNC4wNy41NS0uMTcuNTUtLjM4IDAtLjE5LS4wMS0uODItLjAxLTEuNDktMi4wMS4zNy0yLjUzLS40OS0yLjY5LS45NC0uMDktLjIzLS40OC0uOTQtLjgyLTEuMTMtLjI4LS4xNS0uNjgtLjUyLS4wMS0uNTMuNjMtLjAxIDEuMDguNTggMS4yMy44Mi43MiAxLjIxIDEuODcuODcgMi4zMy42Ni4wNy0uNTIuMjgtLjg3LjUxLTEuMDctMS43OC0uMi0zLjY0LS44OS0zLjY0LTMuOTUgMC0uODcuMzEtMS41OS44Mi0yLjE1LS4wOC0uMi0uMzYtMS4wMi4wOC0yLjEyIDAgMCAuNjctLjIxIDIuMi44Mi42NC0uMTggMS4zMi0uMjcgMi0uMjcuNjggMCAxLjM2LjA5IDIgLjI3IDEuNTMtMS4wNCAyLjItLjgyIDIuMi0uODIuNDQgMS4xLjE2IDEuOTIuMDggMi4xMi41MS41Ni44MiAxLjI3LjgyIDIuMTUgMCAzLjA3LTEuODcgMy43NS0zLjY1IDMuOTUuMjkuMjUuNTQuNzMuNTQgMS40OCAwIDEuMDctLjAxIDEuOTMtLjAxIDIuMiAwIC4yMS4xNS40Ni41NS4zOEE4LjAxMiA4LjAxMiAwIDAgMCAxNiA4YzAtNC40Mi0zLjU4LTgtOC04eiIvPgo8L3N2Zz4="
+            style="width: 1em"
+            alt="github"
+          /> benelan</a
+        >
+        |
+        <a href="https://www.linkedin.com/in/benelan"
+          ><img
+            src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgZmlsbD0iY3VycmVudENvbG9yIiBjbGFzcz0iYmkgYmktbGlua2VkaW4iIHZpZXdCb3g9IjAgMCAxNiAxNiI+CiAgPHBhdGggZD0iTTAgMS4xNDZDMCAuNTEzLjUyNiAwIDEuMTc1IDBoMTMuNjVDMTUuNDc0IDAgMTYgLjUxMyAxNiAxLjE0NnYxMy43MDhjMCAuNjMzLS41MjYgMS4xNDYtMS4xNzUgMS4xNDZIMS4xNzVDLjUyNiAxNiAwIDE1LjQ4NyAwIDE0Ljg1NFYxLjE0NnptNC45NDMgMTIuMjQ4VjYuMTY5SDIuNTQydjcuMjI1aDIuNDAxem0tMS4yLTguMjEyYy44MzcgMCAxLjM1OC0uNTU0IDEuMzU4LTEuMjQ4LS4wMTUtLjcwOS0uNTItMS4yNDgtMS4zNDItMS4yNDgtLjgyMiAwLTEuMzU5LjU0LTEuMzU5IDEuMjQ4IDAgLjY5NC41MjEgMS4yNDggMS4zMjcgMS4yNDhoLjAxNnptNC45MDggOC4yMTJWOS4zNTljMC0uMjE2LjAxNi0uNDMyLjA4LS41ODYuMTczLS40MzEuNTY4LS44NzggMS4yMzItLjg3OC44NjkgMCAxLjIxNi42NjIgMS4yMTYgMS42MzR2My44NjVoMi40MDFWOS4yNWMwLTIuMjItMS4xODQtMy4yNTItMi43NjQtMy4yNTItMS4yNzQgMC0xLjg0NS43LTIuMTY1IDEuMTkzdi4wMjVoLS4wMTZhNS41NCA1LjU0IDAgMCAxIC4wMTYtLjAyNVY2LjE2OWgtMi40Yy4wMy42NzggMCA3LjIyNSAwIDcuMjI1aDIuNHoiLz4KPC9zdmc+"
+            style="width: 1em"
+            alt="linkedin"
+          /> benelan</a
+        >
+      </p>
+    </header>
+    <h3 id="skills">SKILLS</h3>
+    <dl>
+      <dt>Languages</dt>
+      <dd>Bash, CSS, HTML, JavaScript/TypeScript, Lua, Python, SQL</dd>
+      <dt>Libraries</dt>
+      <dd>
+        Express, Jest, Lerna NextJS, React, StencilJS, Storybook, Svelte,
+        Tailwind, Vue
+      </dd>
+      <dt>Technologies</dt>
+      <dd>
+        ArcGIS, Docker, Git, GitHub Actions, Linux, Monorepos, NodeJS, SSR/SSG,
+        Vim
+      </dd>
+    </dl>
+    <h3 id="experience">EXPERIENCE</h3>
+    <div class="entry">
+      <p>
+        <strong>Software Engineer</strong>
+        <span
+          ><a href="https://developers.arcgis.com/calcite-design-system/"
+            ><strong>Calcite Design System, Esri</strong></a
+          >
+          (Remote)</span
+        >
+        <strong>2022–current</strong>
+      </p>
+      <ul>
+        <li>
+          <p>
+            Consolidated code from multiple design system packages into a
+            monorepo.
+          </p>
+        </li>
+        <li>
+          <p>
+            Implemented automated package versioning, releasing, and changelog
+            generation.
+          </p>
+        </li>
+        <li>
+          <p>
+            Fixed bugs and developed new features using native browser APIs,
+            including form validation, focus behavior, internationalization, and
+            more.
+          </p>
+        </li>
+        <li><p>Mentored newly hired Software Engineer.</p></li>
+        <li>
+          <p>
+            <em>Tech:</em> StencilJS, Node, GitHub Actions, Storybook, Jest,
+            Turborepo, Lerna, Frontend frameworks
+          </p>
+        </li>
+      </ul>
+    </div>
+    <div class="entry">
+      <p>
+        <strong>Product Engineer</strong>
+        <span
+          ><a href="https://developers.arcgis.com/calcite-design-system/"
+            ><strong>Calcite Design System, Esri</strong></a
+          >
+          (Remote)</span
+        >
+        <strong>2021–2022</strong>
+      </p>
+      <ul>
+        <li>
+          <p>
+            Created and maintained continuous integration and automation
+            workflows to increase the team’s efficiency, including a script
+            published to NPM for
+            <a href="https://www.npmjs.com/package/build-sizes"
+              >tracking build sizes</a
+            >, and two
+            <a href="https://github.com/marketplace/actions/need-more-info"
+              >GitHub</a
+            >
+            <a
+              href="https://github.com/marketplace/actions/add-milestone-by-due-date"
+              >Actions</a
+            >
+            published to Marketplace.
+          </p>
+        </li>
+        <li>
+          <p>
+            Developed new features and fixed bugs for Calcite components (web
+            components).
+          </p>
+        </li>
+        <li>
+          <p>
+            Assisted with sprint planning, issue prioritization, and quality
+            assurance testing.
+          </p>
+        </li>
+        <li>
+          <p>
+            Solved technical questions from internal Esri employees and external
+            users.
+          </p>
+        </li>
+        <li>
+          <p>
+            Wrote internal and external documentation, including coding
+            conventions, API reference, development tutorials, framework starter
+            apps, and concept explanations.
+          </p>
+        </li>
+      </ul>
+    </div>
+    <div class="entry">
+      <p>
+        <strong>Developer Products Specialist</strong>
+        <span><strong>Support Services, Esri</strong> (Redlands, CA)</span>
+        <strong>2019–2021</strong>
+      </p>
+      <ul>
+        <li>
+          <p>
+            Subject Matter Expert in ArcGIS API for JavaScript, Web AppBuilder
+            &amp; Experience Builder.
+          </p>
+        </li>
+        <li>
+          <p>Created multiple internal Esri applications:</p>
+          <ul>
+            <li>
+              Carpool app to match employees based on commute time and location.
+            </li>
+            <li>Product support-ability search app for case routing.</li>
+            <li>
+              Hardware/device management web app with server side
+              authentication.
+            </li>
+            <li>Web forms for streamlining exam and training requests.</li>
+          </ul>
+        </li>
+        <li>
+          <p>
+            Participated in Hack the Map 4 on
+            <a href="https://devpost.com/software/team-medalus">Team Medalus</a
+            >. Won First Place in Enterprise.
+          </p>
+        </li>
+        <li>
+          <p>
+            Virtual speaker at Esri User Conference 2020:
+            <a
+              href="https://lms-content.s3.amazonaws.com/Readiness/UC_Prep/2020_Presentations/11044_DebuggingArcGISAPIforJavascript_Elan.mp4"
+              >Troubleshooting ArcGIS API for JavaScript Queries</a
+            >
+          </p>
+        </li>
+        <li>
+          <p>Wrote two ArcGIS blog posts:</p>
+          <ul>
+            <li>
+              <a
+                href="https://www.esri.com/arcgis-blog/products/js-api-arcgis/mapping/using-html-with-popups-in-the-arcgis-api-for-javascript/"
+                >Using HTML with Popups in the ArcGIS API for JavaScript</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.esri.com/arcgis-blog/products/js-api-arcgis/developers/ssr-esm/"
+                >Server Side Rendering Frameworks with
+                <code>@arcgis/core</code></a
+              >
+            </li>
+          </ul>
+        </li>
+        <li>
+          <p>
+            <em>Tech:</em> NextJS, Jest, ArcGIS, SQLite, Lunr, MERN stack
+            (MongoDB, Express, React, Node)
+          </p>
+        </li>
+      </ul>
+    </div>
+    <div class="entry">
+      <p>
+        <strong>Web/GIS Developer</strong>
+        <span><strong>InfoGraphics Lab</strong> (University of Oregon)</span>
+        <strong>2017–2019</strong>
+      </p>
+      <ul>
+        <li><p>Implemented interactive web mapping applications.</p></li>
+        <li>
+          <p>Teaching Assistant for Web Mapping (GEOG 490/590) course.</p>
+        </li>
+        <li>
+          <p>
+            Presented at NACIS about building interactivity for a
+            <a
+              href="https://pages.uoregon.edu/infographics/dev/timelineV2/pages/chartofHistory.html"
+              >digitized, historic timeline</a
+            >.
+          </p>
+        </li>
+        <li>
+          <p><em>Tech:</em> D3, Leaflet, High Charts, JQuery</p>
+        </li>
+      </ul>
+    </div>
+    <h3 id="education">EDUCATION</h3>
+    <div class="entry">
+      <p>
+        <strong>Bachelors of Science</strong>
+        <span><strong>University of Oregon</strong> (Eugene, OR)</span>
+        <strong>2014–2018</strong>
+      </p>
+      <ul>
+        <li>
+          Majored in <em>Spatial Data Science and Technology</em> with a minor
+          in <em>Computer Science</em>.
+        </li>
+      </ul>
+    </div>
+    <div class="entry">
+      <p>
+        <strong>Wilderness EMT</strong>
+        <span
+          ><strong>National Outdoor Leadership School</strong> (Lander,
+          WY)</span
+        >
+        <strong>2016</strong>
+      </p>
+      <ul>
+        <li>
+          <p>
+            Developed leadership skills during a variety of outdoor expeditions.
+          </p>
+        </li>
+        <li><p>Earned five medical/rescue certifications.</p></li>
+      </ul>
+    </div>
+    <div class="entry">
+      <p>
+        <strong>National Security</strong>
+        <span
+          ><strong>National Youth Leadership Forum</strong> (Washington,
+          D.C.)</span
+        >
+        <strong>2014</strong>
+      </p>
+      <ul>
+        <li>
+          Nominated for a delegation of high school students to learn from
+          national security experts.
+        </li>
+      </ul>
+    </div>
+    <div class="entry">
+      <p>
+        <strong>Information Security</strong>
+        <span
+          ><strong>University of Southern California</strong> (Los Angeles,
+          CA)</span
+        >
+        <strong>2013</strong>
+      </p>
+      <ul>
+        <li>
+          Earned 3 college credits for an intensive summer course on
+          information/cyber security.
+        </li>
+      </ul>
+    </div>
+    <footer>
+      <p>
+        <a href="https://benelan.dev/resume/Ben_Elan_Resume.pdf">PDF version</a>
+      </p>
+    </footer>
+  </body>
 </html>
