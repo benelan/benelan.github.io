@@ -17,13 +17,12 @@ if [ -d ~/.git ]; then
     exit 1
 fi
 
-# any current, conflicting dotfiles will be moved here
+# any preexisting, conflicting dotfiles will be moved here
 backup_dir="${DOTFILES:-$HOME/.dotfiles}-backup"
-cache_dir="${DOTFILES:-$HOME/.dotfiles}/cache"
-mkdir -p "$backup_dir" "$cache_dir"
+mkdir -p "$backup_dir"
 
 # Don't use SSH to clone if there is no SSH key on the machine
-# This is for when I spin up a new VM and don't want to login to GitHub
+# This is for when I spin up a new VM and don't want to log in to GitHub
 if find ~/.ssh -type f -name '*.pub' | wc -l | xargs test 0 -eq; then
     repo_url="https://github.com/benelan/dotfiles"
 else
@@ -76,16 +75,15 @@ else
         printf "\nChecked out dotfiles\n" >&2
     fi
 fi
-unset files dirs repo_url backup_dir cache_dir
+
+unset files dirs repo_url backup_dir
 
 # Make the bins executable
 printf "\n> Making scripts executable\n" >&2
 [ -d ~/.dotfiles/bin/ ] && chmod +x ~/.dotfiles/bin/*
 
 printf "\n> Installing git submodules\n\n" >&2
-cd
-dot submodule update --init --recursive
-cd -
+(cd && dot submodule update --init --recursive)
 
 bash -l
 printf "\n+ Setup complete!\n" >&2
